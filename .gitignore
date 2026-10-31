@@ -1,0 +1,6 @@
+# Python virtual environment\nvenv/\n# Byte-compiled / optimized / DLL files\n__pycache__/\n*.py[cod]\n*.class\n# C extensions\n*.so\n# Distribution / packaging\n*.egg-info/\n*.dist-info/\n*.egg\n# Installer logs\npip-log.txt\npip-delete-this-directory.txt\n# Unit test / coverage reports\nhtmlcov/\n.tox/\n.nox/\n.coverage\n.coverage.*\n*.cover\n*.py,cover\n.hypothesis/\n.pytest_cache/\nnosetests.xml\ncoverage.xml\n*.db\n*.sqlite3\n# Jupyter Notebook\n.ipynb_checkpoints\n# Environment files\n.env\n.env.*\n# Secrets\n*.key\n*.pem\n*.crt\n*.p12\n# OS files\n.DS_Store\nThumbs.db\n
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
