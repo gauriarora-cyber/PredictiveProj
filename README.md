@@ -1,40 +1,65 @@
-# Wine Quality Prediction — Original ML Project + Web Frontend
+## Run the Project Locally (Windows)
 
-This is the original `PredictiveProj-main` project with a web frontend added.
-The original machine-learning implementation in `main.py`, original dataset,
-requirements, and evaluation image are retained.
+### 1. Download the project
+- Open this GitHub repository.
+- Click **Code → Download ZIP**.
+- Extract the ZIP file.
+- Open the extracted `PredictiveProj-main` folder in VS Code.
 
-## Run in VS Code (Windows)
+Alternatively, clone the repository:
 
-1. Extract this ZIP.
-2. Open the extracted `PredictiveProj-main` folder in VS Code.
-3. Open Terminal in that folder.
-4. Create and activate a virtual environment (recommended):
+```bash
+git clone https://github.com/gauriarora-cyber/PredictiveProj.git
+cd PredictiveProj
+```
 
-   ```bash
-   py -m venv .venv
-   .venv\Scripts\activate
-   ```
+### 2. Open the terminal
 
-5. Install the project's dependencies:
+In VS Code, select **Terminal → New Terminal**.
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 3. Create a virtual environment
 
-6. Start the web application:
+```powershell
+py -m venv .venv
+```
 
-   ```bash
-   python web_app.py
-   ```
+### 4. Activate the virtual environment
 
-7. Open `http://127.0.0.1:5000` in your browser.
+For PowerShell:
 
-## How the integration works
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-- `main.py` remains the source of the original Linear Regression and Logistic Regression implementation.
-- `web_app.py` runs the original `main.py` and reuses its trained models, scalers, evaluation metrics, feature list, and `predict_wine_sample()` function.
-- The frontend in `templates/` sends the 11 measurements to Flask at `/api/predict`.
-- Flask calls the original prediction function and returns its result to the page.
+For Command Prompt (CMD):
 
-The first startup trains the models by executing the original `main.py`.
+```cmd
+.venv\Scripts\activate.bat
+```
+
+### 5. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Run the application
+
+```bash
+python web_app.py
+```
+
+### 7. Open the application
+
+Open your browser and visit:
+
+http://127.0.0.1:5000
+
+The Flask server must remain running while using the application.
+
+## Requirements
+
+- Python installed on your computer
+- Git (if cloning the repository)
+- VS Code (recommended)
+- Internet connection for installing dependencies
