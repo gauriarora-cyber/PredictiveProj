@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vintelligence | Wine Quality AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview"><span class="brand-mark">V</span><span>VINTELLIGENCE<small>WINE QUALITY AI</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-link" href="#predict"><span>⌁</span> Quality prediction</a>
+      <a class="nav-link" href="#performance"><span>◫</span> Model performance</a>
+      <a class="nav-link" href="#methodology"><span>◎</span> Methodology</a>
+      <div class="sidebar-bottom">
+        <div class="status-dot"></div><span>ML models active</span>
+        <div class="sidebar-note">Predictive Modeling<br>Academic Project · 2026</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="crumb">PROJECTS <span>/</span> WINE QUALITY</div>
+        <div class="top-right"><span class="live-pill"><i></i> LIVE MODEL</span><div class="avatar">WQ</div></div>
+      </header>
+
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> PREDICTIVE ANALYTICS</div>
+          <h1>Understand the<br><em>science</em> behind every sip.</h1>
+          <p>Explore how physicochemical properties influence red wine quality. Use trained machine learning models to estimate quality and classify wine samples.</p>
+          <a class="primary-btn" href="#predict">Explore a wine sample <span>↗</span></a>
+        </div>
+        <div class="hero-art" aria-label="Abstract wine illustration">
+          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="wine-glass"><div class="glass-bowl"><div class="wine-liquid"></div></div><div class="glass-stem"></div><div class="glass-base"></div></div>
+          <div class="art-caption">DATA<br>MEETS<br>FLAVOR</div>
+          <div class="art-number">01<span> / 02</span></div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading"><div><div class="eyebrow">AT A GLANCE</div><h2>Dataset overview</h2></div><span class="muted">UCI RED WINE QUALITY DATASET</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon">◉</div><div class="stat-label">Original samples</div><div class="stat-value">{{ "{:,}".format(metrics.total_rows) }}</div><div class="stat-foot">Records in source dataset</div></article>
+          <article class="stat-card"><div class="stat-icon">⌁</div><div class="stat-label">Clean samples</div><div class="stat-value">{{ "{:,}".format(metrics.clean_rows) }}</div><div class="stat-foot">{{ metrics.duplicates }} duplicate rows removed</div></article>
+          <article class="stat-card"><div class="stat-icon">◇</div><div class="stat-label">Input features</div><div class="stat-value">11</div><div class="stat-foot">Physicochemical properties</div></article>
+          <article class="stat-card accent-card"><div class="stat-icon">✦</div><div class="stat-label">High-quality wines</div><div class="stat-value">{{ metrics.high_quality_share }}<small>%</small></div><div class="stat-foot">Quality score ≥ 7</div></article>
+        </div>
+      </section>
+
+      <section class="predict-section section-block" id="predict">
+        <div class="section-heading"><div><div class="eyebrow">TRY THE MODELS</div><h2>Predict a wine sample</h2><p class="section-subtitle">Enter the laboratory measurements below. Both trained models will analyse your sample.</p></div><span class="model-tag">11 PARAMETERS</span></div>
+        <div class="predict-layout">
+          <form id="prediction-form" class="input-panel">
+            <div class="panel-title"><div><span class="step">01</span><div><h3>Wine composition</h3><p>Physicochemical measurements</p></div></div><button type="button" class="reset-btn" id="reset-btn">↺ Reset values</button></div>
+            <div class="field-grid">
+              <label class="field"><span>Fixed acidity <small>g/dm³</small></span><input name="fixed acidity" type="number" step="0.01" min="0" value="7.4" required></label>
+              <label class="field"><span>Volatile acidity <small>g/dm³</small></span><input name="volatile acidity" type="number" step="0.001" min="0" value="0.35" required></label>
+              <label class="field"><span>Citric acid <small>g/dm³</small></span><input name="citric acid" type="number" step="0.01" min="0" value="0.45" required></label>
+              <label class="field"><span>Residual sugar <small>g/dm³</small></span><input name="residual sugar" type="number" step="0.01" min="0" value="2.0" required></label>
+              <label class="field"><span>Chlorides <small>g/dm³</small></span><input name="chlorides" type="number" step="0.001" min="0" value="0.065" required></label>
+              <label class="field"><span>Free sulfur dioxide <small>mg/dm³</small></span><input name="free sulfur dioxide" type="number" step="0.1" min="0" value="15" required></label>
+              <label class="field"><span>Total sulfur dioxide <small>mg/dm³</small></span><input name="total sulfur dioxide" type="number" step="0.1" min="0" value="38" required></label>
+              <label class="field"><span>Density <small>g/cm³</small></span><input name="density" type="number" step="0.0001" min="0" value="0.9950" required></label>
+              <label class="field"><span>pH <small>scale</small></span><input name="pH" type="number" step="0.01" min="0" max="14" value="3.35" required></label>
+              <label class="field"><span>Sulphates <small>g/dm³</small></span><input name="sulphates" type="number" step="0.01" min="0" value="0.75" required></label>
+              <label class="field"><span>Alcohol <small>% by volume</small></span><input name="alcohol" type="number" step="0.1" min="0" max="100" value="12.0" required></label>
+            </div>
+            <div class="form-bottom"><span><i class="info-icon">i</i> All 11 values are required</span><button class="primary-btn predict-btn" type="submit">Run prediction <span>→</span></button></div>
+          </form>
+
+          <aside class="result-panel" id="result-panel">
+            <div class="result-top"><div><div class="eyebrow">MODEL OUTPUT</div><h3>Prediction results</h3></div><span class="result-status" id="result-status">AWAITING INPUT</span></div>
+            <div class="empty-result" id="empty-result"><div class="empty-orbit">✦</div><h4>Your results will appear here</h4><p>Fill in the wine composition and run the prediction to see both model outputs.</p></div>
+            <div id="prediction-result" class="prediction-result hidden">
+              <div class="score-wrap"><div><span class="result-label">PREDICTED QUALITY SCORE</span><div class="score-number" id="score-number">—<small>/ 10</small></div><div class="score-caption">Linear Regression</div></div><div class="score-ring" id="score-ring"><span id="score-ring-value">—</span><small> / 8</small></div></div>
+              <div class="result-divider"></div>
+              <div class="classification"><div><span class="result-label">QUALITY CATEGORY</span><h3 id="category-result">—</h3><p>Logistic Regression · threshold ≥ 7</p></div><span class="category-icon" id="category-icon">✦</span></div>
+              <div class="probability"><div class="probability-head"><span>High-quality probability</span><strong id="probability-value">—</strong></div><div class="progress-track"><div class="progress-fill" id="probability-bar"></div></div></div>
+              <p class="disclaimer">Predictions are statistical estimates based on the training dataset, not a professional wine tasting assessment.</p>
+            </div>
+            <div class="error-message hidden" id="error-message"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-block" id="performance">
+        <div class="section-heading"><div><div class="eyebrow">EVALUATION</div><h2>Model performance</h2><p class="section-subtitle">Metrics computed from the held-out test set (random state = 42).</p></div><span class="model-tag">80 / 20 SPLIT</span></div>
+        <div class="performance-grid">
+          <article class="performance-card"><div class="performance-head"><span class="model-symbol">LR</span><div><h3>Linear Regression</h3><p>Predicts a numerical quality score</p></div></div><div class="metric-row"><span>Root Mean Squared Error</span><strong>{{ metrics.rmse }}</strong></div><div class="metric-row"><span>R² score</span><strong>{{ metrics.r2 }}</strong></div><div class="metric-note">Lower RMSE indicates smaller prediction errors. R² describes the proportion of variance explained by the model.</div></article>
+          <article class="performance-card"><div class="performance-head"><span class="model-symbol model-symbol-alt">LogR</span><div><h3>Logistic Regression</h3><p>Classifies high vs. lower quality</p></div></div><div class="metric-row"><span>Accuracy</span><strong>{{ "%.1f"|format(metrics.accuracy * 100) }}%</strong></div><div class="metric-row"><span>Precision · Recall · F1</span><strong>{{ metrics.precision }} · {{ metrics.recall }} · {{ metrics.f1 }}</strong></div><div class="metric-note">High quality means a quality score ≥ 7. The dataset is imbalanced, so accuracy alone can be misleading.</div></article>
+        </div>
+        <div class="insight-card"><div class="insight-icon">✧</div><div><div class="eyebrow">KEY RESEARCH INSIGHT</div><h3>Alcohol is the strongest predictor in the linear model.</h3><p>Volatile acidity and sulphates also contribute strongly. The low recall for high-quality wines highlights the challenge of class imbalance.</p></div></div>
+      </section>
+
+      <section class="section-block methodology" id="methodology">
+        <div class="section-heading"><div><div class="eyebrow">BEHIND THE PREDICTION</div><h2>Methodology</h2></div></div>
+        <div class="method-steps">
+          <div class="method-step"><span>01</span><div><h3>Data preparation</h3><p>Load the UCI red wine dataset, inspect missing values and remove duplicate records.</p></div></div>
+          <div class="method-step"><span>02</span><div><h3>Feature scaling</h3><p>Split the data into training and test sets, then standardize the 11 input features.</p></div></div>
+          <div class="method-step"><span>03</span><div><h3>Model training</h3><p>Train Linear Regression for numerical scores and Logistic Regression for two quality classes.</p></div></div>
+          <div class="method-step"><span>04</span><div><h3>Evaluation & inference</h3><p>Evaluate on held-out data and use the fitted models to predict new wine samples.</p></div></div>
+        </div>
+      </section>
+      <footer><a class="brand footer-brand" href="#overview"><span class="brand-mark">V</span><span>VINTELLIGENCE<small>WINE QUALITY AI</small></span></a><a href="#overview">Back to top ↑</a></footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
