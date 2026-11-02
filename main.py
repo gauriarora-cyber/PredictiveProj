@@ -208,7 +208,10 @@ axes[1].set_xlabel("Predicted Class", fontsize=10)
 axes[1].set_ylabel("Actual Class", fontsize=10)
 
 plt.tight_layout()
-plt.savefig("model_performance_evaluation.png", dpi=300)
+try:
+    plt.savefig("model_performance_evaluation.png", dpi=300)
+except OSError:
+    pass  # read-only filesystem (e.g. Vercel)
 plt.show()
 print("Saved plots as 'model_performance_evaluation.png'")
 
