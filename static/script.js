@@ -56,3 +56,27 @@ form.addEventListener("submit", async (event) => {
     button.innerHTML = originalText;
   }
 });
+
+// Real samples from winequality-red.csv
+const samples = {
+  high: { "fixed acidity": 7.9, "volatile acidity": 0.35, "citric acid": 0.46,
+    "residual sugar": 3.6, "chlorides": 0.078, "free sulfur dioxide": 15,
+    "total sulfur dioxide": 37, "density": 0.9973, "pH": 3.35,
+    "sulphates": 0.86, "alcohol": 12.8 },
+  average: { "fixed acidity": 7.4, "volatile acidity": 0.7, "citric acid": 0,
+    "residual sugar": 1.9, "chlorides": 0.076, "free sulfur dioxide": 11,
+    "total sulfur dioxide": 34, "density": 0.9978, "pH": 3.51,
+    "sulphates": 0.56, "alcohol": 9.4 },
+  low: { "fixed acidity": 11.6, "volatile acidity": 0.58, "citric acid": 0.66,
+    "residual sugar": 2.2, "chlorides": 0.074, "free sulfur dioxide": 10,
+    "total sulfur dioxide": 47, "density": 1.0008, "pH": 3.25,
+    "sulphates": 0.57, "alcohol": 9 }
+};
+
+document.querySelectorAll(".sample-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    Object.entries(samples[btn.dataset.sample]).forEach(([name, value]) => {
+      form.elements.namedItem(name).value = value;
+    });
+  });
+});

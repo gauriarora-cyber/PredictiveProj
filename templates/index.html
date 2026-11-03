@@ -60,6 +60,7 @@
         <div class="predict-layout">
           <form id="prediction-form" class="input-panel">
             <div class="panel-title"><div><span class="step">01</span><div><h3>Wine composition</h3><p>Physicochemical measurements</p></div></div><button type="button" class="reset-btn" id="reset-btn">↺ Reset values</button></div>
+            <div class="sample-row"><span>Load a sample:</span><button type="button" class="sample-btn" data-sample="high">High quality (8)</button><button type="button" class="sample-btn" data-sample="average">Average (5)</button><button type="button" class="sample-btn" data-sample="low">Low quality (3)</button></div>
             <div class="field-grid">
               <label class="field"><span>Fixed acidity <small>g/dm³</small></span><input name="fixed acidity" type="number" step="0.01" min="0" value="7.4" required></label>
               <label class="field"><span>Volatile acidity <small>g/dm³</small></span><input name="volatile acidity" type="number" step="0.001" min="0" value="0.35" required></label>
@@ -96,6 +97,10 @@
         <div class="performance-grid">
           <article class="performance-card"><div class="performance-head"><span class="model-symbol">LR</span><div><h3>Linear Regression</h3><p>Predicts a numerical quality score</p></div></div><div class="metric-row"><span>Root Mean Squared Error</span><strong>{{ metrics.rmse }}</strong></div><div class="metric-row"><span>R² score</span><strong>{{ metrics.r2 }}</strong></div><div class="metric-note">Lower RMSE indicates smaller prediction errors. R² describes the proportion of variance explained by the model.</div></article>
           <article class="performance-card"><div class="performance-head"><span class="model-symbol model-symbol-alt">LogR</span><div><h3>Logistic Regression</h3><p>Classifies high vs. lower quality</p></div></div><div class="metric-row"><span>Accuracy</span><strong>{{ "%.1f"|format(metrics.accuracy * 100) }}%</strong></div><div class="metric-row"><span>Precision · Recall · F1</span><strong>{{ metrics.precision }} · {{ metrics.recall }} · {{ metrics.f1 }}</strong></div><div class="metric-note">High quality means a quality score ≥ 7. The dataset is imbalanced, so accuracy alone can be misleading.</div></article>
+        </div>
+        <div class="chart-grid">
+          <figure class="chart-card"><figcaption><h3>Actual vs predicted quality</h3><p>Linear Regression · points near the red line are accurate predictions</p></figcaption><img src="{{ url_for('static', filename='plot_regression.png') }}" alt="Scatter plot of actual vs predicted wine quality scores" loading="lazy"></figure>
+          <figure class="chart-card"><figcaption><h3>Confusion matrix</h3><p>Logistic Regression · correct predictions sit on the diagonal</p></figcaption><img src="{{ url_for('static', filename='plot_confusion.png') }}" alt="Confusion matrix for high vs lower quality classification" loading="lazy"></figure>
         </div>
         <div class="insight-card"><div class="insight-icon">✧</div><div><div class="eyebrow">KEY RESEARCH INSIGHT</div><h3>Alcohol is the strongest predictor in the linear model.</h3><p>Volatile acidity and sulphates also contribute strongly. The low recall for high-quality wines highlights the challenge of class imbalance.</p></div></div>
       </section>

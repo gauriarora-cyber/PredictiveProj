@@ -1106,3 +1106,68 @@ footer > a:last-child {
         padding: 32px 0;
     }
 }
+/* SAMPLE PRESETS */
+
+.sample-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font: 500 13px 'DM Sans';
+    color: #9a9089;
+}
+
+.sample-btn {
+    background: none;
+    border: 1px solid var(--wine);
+    border-radius: 999px;
+    padding: 5px 12px;
+    color: var(--wine);
+    font: 600 12px 'DM Sans';
+    cursor: pointer;
+}
+
+.sample-btn:hover {
+    background: var(--wine);
+    color: #fff;
+}
+
+/* EVALUATION CHARTS */
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.chart-card {
+    margin: 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 22px;
+}
+
+.chart-card h3 {
+    margin: 0 0 4px;
+}
+
+.chart-card p {
+    font-size: 13px;
+    color: #9a9089;
+    margin: 0 0 14px;
+}
+
+.chart-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 800px) {
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+}
